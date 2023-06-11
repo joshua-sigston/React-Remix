@@ -5,9 +5,13 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "@remix-run/react"
+} from "@remix-run/react";
 
+import sharedStyles from './styles/shared.css'
 
+export function links() {
+  return ({ rel: "stylesheet", href: sharedStyles })
+}
 
 export default function App() {
   return (
