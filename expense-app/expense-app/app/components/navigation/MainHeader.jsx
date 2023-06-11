@@ -19,7 +19,7 @@ function MainHeader() {
       <nav id="cta-nav">
         <ul>
           <li>
-            <Link href="/auth" className="cta">
+            <Link to="auth" className="cta">
               Login
             </Link>
           </li>

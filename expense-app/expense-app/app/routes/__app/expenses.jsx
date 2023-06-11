@@ -1,4 +1,5 @@
-import { Outlet } from "react-router";
+import { Outlet, Link } from '@remix-run/react';
+import { FaPlus, FaDownload } from 'react-icons/fa'
 
 import ExpensesList from '../../components/expenses/ExpensesList'
 
@@ -22,6 +23,16 @@ export default function ExpensesLayout() {
       <>
         <Outlet />
         <main>
+          <section id="expenses-actions">
+            <Link to='add'>
+              <FaPlus />
+              <span>Add Expenses</span>
+            </Link>
+            <a href='/expenses/raw'>
+              <FaDownload />
+              <spand>Load Raw Data</spand>
+            </a>
+          </section>
           <ExpensesList expenses={dummyData}/>
         </main>
       </>
