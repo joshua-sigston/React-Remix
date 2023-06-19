@@ -1,0 +1,8 @@
+.footer_container {
+    background-color: var(--clr-airforce-blue);
+
+    display: grid;
+    place-content: center;
+    padding-top: .5em;
+    padding-bottom: .5em;
+}

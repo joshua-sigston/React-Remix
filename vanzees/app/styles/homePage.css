@@ -14,7 +14,11 @@
     text-align: center;
     color: #02111B;
     padding-inline: .2em;
-    min-height: 100%;
+    min-height: 80%;
+}
+
+.home_container h2 {
+    color: var(--clr-white);
 }
 
 .home_container:after {
@@ -29,11 +33,11 @@
     opacity: .5;
 }
 
-.home_link {
+.to_vans-link {
     background-color: var(--clr-zomp);
     color: var(--clr-white);
     border-radius: .5rem;
-    max-width: 9rem;
+    font-size: 1rem;
     padding: .3em .5em;
 
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;

@@ -1,7 +1,7 @@
-const Hamburger = () => {
+const Hamburger = ({handleMobileNav}) => {
 
     const handleHamburger = () => {
-      
+      handleMobileNav()
     }
   
     return (
