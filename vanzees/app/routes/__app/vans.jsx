@@ -1,34 +1,32 @@
 import { Link, useSearchParams } from '@remix-run/react';
-
 // API
 import { getData } from '../../api'
-
 // json
 import { json } from '@remix-run/node'
-
 // Styles
 import vanStyles from '../../styles/vansPage.css'
-
 export function links() {
     return [{ rel: 'stylesheet', href: vanStyles}]
 }
-
 // userLoader
 import { useLoaderData } from '@remix-run/react';
-
 // Component
 import VanCard from '../../components/VanCard';
+// Server
+import { getVans } from '../../data/van.server';
 
 export async function loader() {
-    const data = await getData();
-    if(!data || data.length === 0) {
-        throw json({message: 'Could not find nay notes.'}, {
-            status: 404,
-            statusText: 'Not found.'
-        }
-    );
-    }
-    return data
+    const vans = await getVans();
+    return vans;
+    // const data = await getData();
+    // if(!data || data.length === 0) {
+    //     throw json({message: 'Could not find nay notes.'}, {
+    //         status: 404,
+    //         statusText: 'Not found.'
+    //     }
+    // );
+    // }
+    // return data
 }
 
 export default function VansPage() {

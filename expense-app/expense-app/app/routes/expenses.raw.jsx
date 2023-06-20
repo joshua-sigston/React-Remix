@@ -1,19 +1,5 @@
-const dummyData = [
-  {
-      id: 'e1',
-      title: 'first expense',
-      amount: 12.39,
-      date: new Date().toISOString()
-  },
-  {
-      id: 'e2',
-      title: 'first expense',
-      amount: 12.39,
-      date: new Date().toISOString()
-  }
-]
-
-
+import { getExpenses } from '~/data/expenses.server';
+ 
 export function loader() {
-  return dummyData
+  return getExpenses();
 }

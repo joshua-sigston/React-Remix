@@ -24,7 +24,7 @@ const APIKey = 'oBMRQylpLI6uL1Nzmh1190LXyFNXSnKmhoxo3PJhEkG6V400lABqnFVs';
 // }
 
 function seedImg() {
-    fetch("https://api.pexels.com/v1/search?query=van%20camper&per_page=10",{
+    fetch("https://api.pexels.com/v1/search?query=van%20camper&per_page=30",{
   headers: {
     Authorization: APIKey
   }

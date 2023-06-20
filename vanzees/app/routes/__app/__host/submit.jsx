@@ -10,6 +10,7 @@ import { addVan } from "../../../data/van.server";
 export async function action({ request }) {
     const formData = await request.formData();
     const vanData = Object.fromEntries(formData);
+    console.log(vanData)
     await addVan(vanData);
     return redirect('/my-vans')
 }

@@ -1,18 +1,20 @@
-// Remis
-import { json } from '@remix-run/node';
+// Remix
 import { Outlet, Link, useLoaderData } from '@remix-run/react';
 import { FaPlus, FaDownload } from 'react-icons/fa'
-
+// Components
 import ExpensesList from '../../components/expenses/ExpensesList'
-
+// Server
 import { getExpenses } from '../../data/expenses.server';
 
-export function loader() {
-  return getExpenses()
+export async function loader() {
+  const expenses = await getExpenses();
+  return expenses
 }
 
 export default function ExpensesLayout() {
   const expenses = useLoaderData();
+
+  const hasExpenses = expenses && expenses.length >0
     return (
       <>
         <Outlet />
@@ -27,7 +29,13 @@ export default function ExpensesLayout() {
               <spand>Load Raw Data</spand>
             </a>
           </section>
-          <ExpensesList expenses={expenses}/>
+          {hasExpenses && <ExpensesList expenses={expenses}/>}
+          {!hasExpenses && 
+            <section>
+              <h1>No Expenses Found</h1>
+              <p>Start <Link to='add'>adding some</Link> today</p>
+            </section>
+          }
         </main>
       </>
     );

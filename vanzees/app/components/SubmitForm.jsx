@@ -32,6 +32,9 @@ function SubmitForm() {
         <p>
             <input type="text" id='description' name='description' placeholder='Describe Van' required minLength={15}/>
         </p>
+        <p>
+            <input type="text" id='type' name='type' placeholder='type of van' required minLength={5}/>
+        </p>
       </div>
       {
         validationErrors && 

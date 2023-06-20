@@ -2,6 +2,17 @@ import { getData } from '../../../api'
 
 import { useLoaderData, NavLink, Outlet, Link } from '@remix-run/react';
 
+export async function loader({ params }) {
+    const vans = await getData();
+    const vanID = params.vanID;
+    const selectedVan = vans.find(van => van.id === vanID);
+
+    if(!selectedVan) {
+        throw json({message: 'could not find note for id' + vanID})
+    }
+    return selectedVan
+}
+
 export default function HostVanDetails() {
     const van = useLoaderData();
 
@@ -29,15 +40,4 @@ export default function HostVanDetails() {
             <Outlet context={{van}}/>
         </section>
     )
-}
-
-export async function loader({ params }) {
-    const vans = await getData();
-    const vanID = params.vanID;
-    const selectedVan = vans.find(van => van.id === vanID);
-
-    if(!selectedVan) {
-        throw json({message: 'could not find note for id' + vanID})
-    }
-    return selectedVan
 }

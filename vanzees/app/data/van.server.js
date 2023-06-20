@@ -9,10 +9,21 @@ export async function addVan(vanInfo) {
                     price: +vanInfo.amount,
                     image: vanInfo.image,
                     description: vanInfo.description,
+                    type: vanInfo.type
                 }
             }
         )
     } catch (error) {
         console.log(error)
+    }
+}
+
+export async function getVans() {
+    try {
+        const vans = await prisma.van.findMany();
+        return vans;
+    } catch (error) {
+        console.log(error)
+        throw error;
     }
 }

@@ -16,5 +16,6 @@ model Van {
   price       Float
   image       String
   description String
+  type        String
   dateAdded   DateTime @default(now())
 }
