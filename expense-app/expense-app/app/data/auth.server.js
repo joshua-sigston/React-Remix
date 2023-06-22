@@ -18,7 +18,8 @@ const sessionStorage = createCookieSessionStorage({
 async function createUserSession(userId, redirectPath) {
     const session = await sessionStorage.getSession();
     session.set('userId', userId);
-    return redirect(redirectPath, { headers: { 'Set-Cookie': await sessionStorage.commitSession(session)} })
+    return redirect(redirectPath, 
+        { headers: { 'Set-Cookie': await sessionStorage.commitSession(session)} })
 }
 
 export async function getUserFromSession(request) {
@@ -44,10 +45,11 @@ export async function endUserSession(request) {
 
 export async function requireUserSession(request) {
     const userId = await getUserFromSession(request);
-
+    
     if(!userId) {
         throw redirect('/auth?mode=login');
     }
+    return userId
 }
 
 export async function signUp({ email, password }) {
@@ -62,7 +64,7 @@ export async function signUp({ email, password }) {
     const passwordHash = await hash(password, 12);
 
     const user = await prisma.users.create({ data: { email: email, password: passwordHash } });
-    return createUserSession(userId, '/expenses')
+    return createUserSession(user.id, '/expenses')
 }
 
 export async function login({ email, password} ) {

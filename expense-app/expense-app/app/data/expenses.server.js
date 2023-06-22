@@ -18,6 +18,9 @@ export async function addExpense(expenseData, userId) {
 }
 
 export async function getExpenses(userId) {
+  if (!userId) {
+    throw new Error('Failed to get user expenses.');
+  }
   try {
     const expenses = await prisma.expense.findMany({
       where: { userId },

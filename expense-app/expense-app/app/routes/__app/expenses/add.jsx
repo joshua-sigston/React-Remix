@@ -13,7 +13,7 @@ export async function action({request}) {
     const userId = await requireUserSession(request);
     const formData = await request.formData();
     const expenseData = Object.fromEntries(formData);
-
+    
     // validate data submitted by user
     try {
         validateExpenseInput(expenseData)
@@ -22,7 +22,7 @@ export async function action({request}) {
     }
 
     await addExpense(expenseData, userId);
-    return redirect('/expenses')
+    return redirect('/')
 }
 
 export default function AddExpensePage() {

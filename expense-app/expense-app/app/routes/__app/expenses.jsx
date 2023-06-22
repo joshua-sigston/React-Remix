@@ -9,7 +9,7 @@ import { requireUserSession } from '../../data/auth.server';
 
 export async function loader({ request }) {
   const userId = await requireUserSession(request);
-
+  
   const expenses = await getExpenses(userId);
   return expenses
 }
