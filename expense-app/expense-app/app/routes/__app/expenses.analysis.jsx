@@ -9,13 +9,16 @@ import { getExpense } from '../../data/expenses.server'
 // Remix
 import { json } from '@remix-run/node'
 import { useCatch, useLoaderData } from '@remix-run/react'
+import { requireUserSession } from '../../data/auth.server'
 
 export function links() {
   return [{ rel: "stylesheet", href: expensesStyles }]
 }
 
 
-export async function loader() {
+export async function loader({ request }) {
+  await requireUserSession(request);
+  
   const expenses = await getExpense();
 
   if(!expenses || expenses.length === 0) {

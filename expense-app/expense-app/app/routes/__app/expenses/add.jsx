@@ -7,11 +7,12 @@ import { useNavigate } from '@remix-run/react';
 // Server
 import { addExpense } from '../../../data/expenses.server';
 import { validateExpenseInput } from '../../../data/validation.server';
+import { requireUserSession } from '../../../data/auth.server';
 
 export async function action({request}) {
+    const userId = await requireUserSession(request);
     const formData = await request.formData();
     const expenseData = Object.fromEntries(formData);
-    console.log(expenseData, formData)
 
     // validate data submitted by user
     try {
@@ -20,7 +21,7 @@ export async function action({request}) {
         return error;
     }
 
-    await addExpense(expenseData);
+    await addExpense(expenseData, userId);
     return redirect('/expenses')
 }
 

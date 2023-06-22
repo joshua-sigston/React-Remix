@@ -5,9 +5,12 @@ import { FaPlus, FaDownload } from 'react-icons/fa'
 import ExpensesList from '../../components/expenses/ExpensesList'
 // Server
 import { getExpenses } from '../../data/expenses.server';
+import { requireUserSession } from '../../data/auth.server';
 
-export async function loader() {
-  const expenses = await getExpenses();
+export async function loader({ request }) {
+  const userId = await requireUserSession(request);
+
+  const expenses = await getExpenses(userId);
   return expenses
 }
 

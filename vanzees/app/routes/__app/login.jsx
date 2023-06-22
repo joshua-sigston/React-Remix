@@ -1,5 +1,11 @@
+// Components
+import LogInForm from "../../components/LogInForm"
+
 export default function LogInPage() {
     return(
-        <h1>LogIn Page</h1>
+        <section>
+            <LogInForm />
+        </section>
+        
     )
 }

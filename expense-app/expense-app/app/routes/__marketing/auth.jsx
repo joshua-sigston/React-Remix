@@ -7,14 +7,14 @@ export function links() {
 }
 // Server
 import { validateCredentials } from '../../data/validation.server'
-import { signUp } from "../../data/auth.server";
+import { signUp, login } from "../../data/auth.server";
 // Remix
 import { redirect } from "@remix-run/node";
 // Action
 export async function action({ request }) {
   const searchParams = new URL(request.url).searchParams;
   const authMode = searchParams.get('mode') || 'login';
-
+  console.log(authMode)
   const formData = await request.formData();
   const credentials = Object.fromEntries(formData);
 
@@ -24,13 +24,19 @@ export async function action({ request }) {
     return error;
   }
 
-  if (authMode === 'login') {
-    // login logic
-  } else {
-    await signUp(credentials)
-    return redirect('/expenses')
+  try {
+    if (authMode === 'login') {
+      return await login(credentials);
+    } else {
+      return await signUp(credentials);
+    }
+  } catch (error) {
+    if (/(422|401|403)/.test(error.status)) {
+      return { credentials: error.message };
+    }
+      return { credentials: 'Something went wrong!' };
   }
-  return null
+  
 }
 
 export default function AuthPage() {
