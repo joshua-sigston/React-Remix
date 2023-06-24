@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { NavLink } from "@remix-run/react"
+import { NavLink, useLoaderData, Link, Form } from "@remix-run/react"
 
 // Components
 import Hamburger from "./Hamburger"
@@ -17,6 +17,7 @@ export function links() {
 
 const MainHeader = () => {
     const [ mobileNav, setMobileNav ] = useState(false);
+    const userID = useLoaderData();
 
     const activeLink = {
         color: '#568EA3'
@@ -66,12 +67,20 @@ const MainHeader = () => {
                         onClick={handleMobileNav}>
                 Host
                 </NavLink>
-                <NavLink  to='/login' 
-                        className='header_link'
-                        style={({isActive}) => isActive ? activeLink : null}
-                        onClick={handleMobileNav}>
-                Login
-                </NavLink>
+
+                {userID &&( 
+                    <Form method="POST" action="/logout">
+                        <button>Logout</button>
+                    </Form>)
+                }
+
+                {!userID && (
+                    <Link  to='/login' 
+                            className='header_link'
+                            onClick={handleMobileNav}>
+                    Login
+                    </Link>)
+                }
             </nav>
         </header>
     )

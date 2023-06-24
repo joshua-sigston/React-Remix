@@ -5,10 +5,10 @@ export async function addExpense(expenseData, userId) {
         return await prisma.expense.create(
             {
                 data: {
-                title: expenseData.title,
-                amount: +expenseData.amount,
-                date: new Date(expenseData.date),
-                Users: { connect: { id: userId }}
+                  title: expenseData.title,
+                  amount: +expenseData.amount,
+                  date: new Date(expenseData.date),
+                  User: { connect: { id: userId }}
                 }
             }
         );

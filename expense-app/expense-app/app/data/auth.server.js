@@ -17,6 +17,7 @@ const sessionStorage = createCookieSessionStorage({
 
 async function createUserSession(userId, redirectPath) {
     const session = await sessionStorage.getSession();
+
     session.set('userId', userId);
     return redirect(redirectPath, 
         { headers: { 'Set-Cookie': await sessionStorage.commitSession(session)} })
@@ -53,7 +54,7 @@ export async function requireUserSession(request) {
 }
 
 export async function signUp({ email, password }) {
-    const existingUser = await prisma.users.findFirst({ where: { email } });
+    const existingUser = await prisma.user.findFirst({ where: { email } });
 
     if (existingUser) {
         const error = new Error('A user with the provided email address exists already.');
@@ -63,12 +64,12 @@ export async function signUp({ email, password }) {
 
     const passwordHash = await hash(password, 12);
 
-    const user = await prisma.users.create({ data: { email: email, password: passwordHash } });
+    const user = await prisma.user.create({ data: { email: email, password: passwordHash } });
     return createUserSession(user.id, '/expenses')
 }
 
 export async function login({ email, password} ) {
-    const existingUser = await prisma.users.findFirst({ where: { email } });
+    const existingUser = await prisma.user.findFirst({ where: { email } });
 
     // Check user email
     if(!existingUser) {

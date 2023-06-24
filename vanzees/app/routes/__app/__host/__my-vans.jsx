@@ -1,3 +1,4 @@
+import { json } from '@remix-run/node';
 import { getData } from '../../../api'
 
 import { useLoaderData, NavLink, Outlet, Link } from '@remix-run/react';

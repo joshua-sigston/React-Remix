@@ -1,5 +1,5 @@
 // Remix
-import { useNavigation, useSearchParams, Link } from '@remix-run/react'
+import { useNavigation, useSearchParams, Link, useActionData } from '@remix-run/react'
 // Font-Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserAstronaut, faUserPlus } from '@fortawesome/free-solid-svg-icons';
@@ -7,7 +7,8 @@ import { faUserAstronaut, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 export default function LogInForm() {
     const [searchParams] = useSearchParams();
     const navigation = useNavigation();
-    
+    const validationErrors = useActionData();
+
     const mode = searchParams.get('mode') || 'login';
     const isSubmitting = navigation.state !== 'idle';
     const submitBtnCaption = mode === 'login' ? 'Login' : 'Sign Up';
@@ -20,6 +21,12 @@ export default function LogInForm() {
             </div>
             <input type="email" name="email" placeholder="Email" required />
             <input type="password" name="password" placeholder="Enter password" required />
+            {
+                validationErrors && 
+                <ul>
+                    {Object.values(validationErrors).map(error => <li key={error}>{error}</li>)}
+                </ul>
+            }
             <div className="btn_container">
                 <button disabled={isSubmitting}>{isSubmitting ? 'Processing...' : submitBtnCaption}</button>
                 <Link to={mode === 'login' ? '?mode=signup' : '?mode=login'}>{toggleBtnCaption}</Link>

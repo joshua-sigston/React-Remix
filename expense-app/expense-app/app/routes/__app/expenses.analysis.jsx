@@ -5,7 +5,7 @@ import Error from '../../components/util/Error'
 // Styles
 import expensesStyles from '../../styles/expenses.css'
 // Server
-import { getExpense } from '../../data/expenses.server'
+import { getExpenses } from '../../data/expenses.server'
 // Remix
 import { json } from '@remix-run/node'
 import { useCatch, useLoaderData } from '@remix-run/react'
@@ -17,10 +17,10 @@ export function links() {
 
 
 export async function loader({ request }) {
-  await requireUserSession(request);
+  const userId = await requireUserSession(request);
   
-  const expenses = await getExpense();
-
+  const expenses = await getExpenses(userId);
+  
   if(!expenses || expenses.length === 0) {
     throw json(
       {message: 'Could not load expenses.'},
@@ -47,6 +47,7 @@ export function CatchBoundary() {
 
 export default function ExpensesAnalysisPage() {
   const expenses = useLoaderData();
+  console.log(expenses)
     return (
       <div >
         <Chart expenses={expenses}/>
