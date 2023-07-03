@@ -70,13 +70,13 @@ const MainHeader = () => {
 
                 {userID &&( 
                     <Form method="POST" action="/logout">
-                        <button>Logout</button>
+                        <button className='login_logout-link'>Logout</button>
                     </Form>)
                 }
 
                 {!userID && (
-                    <Link  to='/login' 
-                            className='header_link'
+                    <Link   to='/login' 
+                            className='login_logout-link'
                             onClick={handleMobileNav}>
                     Login
                     </Link>)

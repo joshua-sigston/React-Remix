@@ -89,6 +89,11 @@ h3, h4, h5 {
     gap: 1em;
 }
 
+li {
+    list-style: none;
+    text-align: center;
+}
+
 .flex_row {
     display: flex;
     flex-wrap: wrap;
@@ -139,4 +144,60 @@ a {
 .app_container {
     background-color: var(--clr-white);
     min-height: 100vh;
+}
+
+/* Footer */
+
+.footer_container {
+    background-color: var(--clr-airforce-blue);
+
+    display: grid;
+    place-content: center;
+    padding-top: .5em;
+    padding-bottom: .5em;
+}
+
+/* Login */
+
+.login_container {
+    place-content: center;
+    height: 100%;
+}
+
+.login_form {
+    justify-items: center;
+    align-items: center;
+    padding: 1em;
+}
+
+.login_btn,
+.login_form input {
+    border: none;
+    border-radius: .3rem;
+    padding: .3em .5em;
+}
+
+.login_form input {
+    font-family: var(--ff-sub-title);
+    background-color: whitesmoke;
+}
+
+.login_icon {
+    min-width: 3rem;
+    min-height: 3rem;
+}
+
+.btn_container {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.login_btn {
+    background-color: var(--clr-mid-grey);
+    font-family: var(--ff-sub-title);
+    color: var(--clr-white);
+    font-weight: bold;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }

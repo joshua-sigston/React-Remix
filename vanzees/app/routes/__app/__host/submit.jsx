@@ -1,5 +1,5 @@
 // Components
-import SubmitForm from "../../../components/SubmitForm"
+import VanForm from "../../../components/VanForm"
 // Remix
 import { redirect } from '@remix-run/node';
 import { useNavigate } from '@remix-run/react';
@@ -14,15 +14,15 @@ export async function action({ request }) {
     const vanData = Object.fromEntries(formData);
 
     await addVan(vanData, userID);
-    return redirect('/my-vans')
+    return redirect('/host-vans')
 }
 
 export default function SubmitVanPage() {
     const navigate = useNavigate();
     
     return (
-        <>
-            <SubmitForm />
-        </>
+        <section className="form_container flex_row">
+            <VanForm />
+        </section>
     )
 }

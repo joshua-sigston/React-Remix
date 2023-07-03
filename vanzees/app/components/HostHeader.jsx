@@ -19,13 +19,13 @@ export default function HostHeader() {
                 Reviews
                 </NavLink>
 
-                <NavLink  to='income'
+                <NavLink  to='/income'
                         className="header_link"
                         style={({isActive}) => isActive ? activeLink : null}>
                 Income
                 </NavLink>
 
-                <NavLink  to='my-vans'
+                <NavLink  to='host-vans'
                         className="header_link"
                         style={({isActive}) => isActive ? activeLink : null}>
                 My Vans

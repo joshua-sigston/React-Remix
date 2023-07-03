@@ -7,7 +7,8 @@ function ExpenseForm() {
   const navigation = useNavigation();
   const matches = useMatches();
   const params = useParams();
-  // console.log(matches);
+  console.log(matches);
+  
   const expenses = matches.find(match => match.id === 'routes/__app/expenses').data;
   const expenseData = expenses.find(expense => expense.id === params.id);
   // const expenseData = useLoaderData();

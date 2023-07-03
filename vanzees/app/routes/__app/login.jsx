@@ -3,7 +3,6 @@ import LogInForm from "../../components/LogInForm"
 // Server
 import { validateCredentials } from '../../data/validation.server'
 import { login, signup } from "../../data/auth.server";
-import { redirect } from "@remix-run/node";
 
 // Action
 export async function action({ request }) {
@@ -35,7 +34,7 @@ export async function action({ request }) {
 export default function LogInPage() {
 
     return(
-        <section>
+        <section className="login_container grid">
             <LogInForm />
         </section>
         

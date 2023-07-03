@@ -15,9 +15,9 @@ export default function LogInForm() {
     const toggleBtnCaption = mode === 'login' ? 'Create new user' : 'Log in with existing user.';
 
     return(
-        <form method="POST" >
+        <form method="POST" className='login_form grid'>
             <div className="icon_container">
-                {mode === 'login' ? <FontAwesomeIcon icon={faUserAstronaut} /> : <FontAwesomeIcon icon={faUserPlus} />}
+                {mode === 'login' ? <FontAwesomeIcon icon={faUserAstronaut} className='login_icon'/> : <FontAwesomeIcon icon={faUserPlus} className='login_icon' />}
             </div>
             <input type="email" name="email" placeholder="Email" required />
             <input type="password" name="password" placeholder="Enter password" required />
@@ -27,8 +27,8 @@ export default function LogInForm() {
                     {Object.values(validationErrors).map(error => <li key={error}>{error}</li>)}
                 </ul>
             }
-            <div className="btn_container">
-                <button disabled={isSubmitting}>{isSubmitting ? 'Processing...' : submitBtnCaption}</button>
+            <div className="btn_container flex_column">
+                <button disabled={isSubmitting} className='login_btn'>{isSubmitting ? 'Processing...' : submitBtnCaption}</button>
                 <Link to={mode === 'login' ? '?mode=signup' : '?mode=login'}>{toggleBtnCaption}</Link>
             </div>
         </form>

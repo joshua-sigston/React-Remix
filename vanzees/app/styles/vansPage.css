@@ -1,4 +1,4 @@
-.list_container, .host_vans_list {
+.list_container, .host_vans-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     justify-items: center;

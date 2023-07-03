@@ -55,3 +55,12 @@ header {
     background-color: var(--clr-white);
     border-radius: .3rem;
 }
+
+.login_logout-link {
+    border: none;
+    padding: .3em .5em;
+    background-color: var(--clr-airforce-blue);
+    font-family: var(--ff-sub-title);
+    color: var(--clr-white);
+    font-weight: bold;
+}

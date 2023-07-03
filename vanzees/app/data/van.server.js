@@ -40,3 +40,30 @@ export async function getUserVans(userId) {
         throw error;
     }
 }
+
+export async function updateVan(id, vanInfo) {
+    try {
+        await prisma.van.update({
+            where: {id},
+            data: {
+                title: vanInfo.title,
+                price: +vanInfo.amount,
+                image: vanInfo.image,
+                description: vanInfo.description,
+                type: vanInfo.type,
+              }
+          })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function deleteVan(id) {
+    try {
+      await prisma.van.delete({
+        where: {id}
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
